@@ -39,6 +39,9 @@ const SecurityPage = lazy(
 const SSHKeysPage = lazy(
   () => import("./pages/UserSettingsPage/SSHKeysPage/SSHKeysPage"),
 )
+const TokensPage = lazy(
+  () => import("./pages/UserSettingsPage/TokensPage/TokensPage"),
+)
 const CreateUserPage = lazy(
   () => import("./pages/UsersPage/CreateUserPage/CreateUserPage"),
 )
@@ -399,6 +402,16 @@ export const AppRouter: FC = () => {
                 <NavbarLayout>
                   <SettingsLayout>
                     <SSHKeysPage />
+                  </SettingsLayout>
+                </NavbarLayout>
+              }
+            />
+            <Route
+              path="tokens"
+              element={
+                <NavbarLayout>
+                  <SettingsLayout>
+                    <TokensPage />
                   </SettingsLayout>
                 </NavbarLayout>
               }
