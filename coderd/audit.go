@@ -450,6 +450,10 @@ func resourceTypeFromString(resourceTypeString string) string {
 		return resourceTypeString
 	case codersdk.ResourceTypeAPIKey:
 		return resourceTypeString
+	case codersdk.ResourceTypeGroup:
+		return resourceTypeString
+	case codersdk.ResourceTypeGroupMembers:
+		return resourceTypeString
 	}
 	return ""
 }

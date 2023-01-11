@@ -1069,6 +1069,7 @@ export type ResourceType =
   | "api_key"
   | "git_ssh_key"
   | "group"
+  | "group_members"
   | "organization"
   | "template"
   | "template_version"

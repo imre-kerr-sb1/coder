@@ -112,6 +112,9 @@ var AuditableResources = auditMap(map[any]map[string]Action{
 		"avatar_url":      ActionTrack,
 		"quota_allowance": ActionTrack,
 	},
+	&database.GroupMember{}: {
+		"user_id": ActionTrack,
+	},
 	// We don't show any diff for the WorkspaceBuild resource
 	&database.WorkspaceBuild{}: {
 		"id":                  ActionIgnore,

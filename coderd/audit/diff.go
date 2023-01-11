@@ -17,6 +17,7 @@ type Auditable interface {
 		database.Workspace |
 		database.GitSSHKey |
 		database.Group |
+		[]database.GroupMember |
 		database.WorkspaceBuild
 }
 

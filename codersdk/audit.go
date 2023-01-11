@@ -23,6 +23,7 @@ const (
 	ResourceTypeGitSSHKey       ResourceType = "git_ssh_key"
 	ResourceTypeAPIKey          ResourceType = "api_key"
 	ResourceTypeGroup           ResourceType = "group"
+	ResourceTypeGroupMembers    ResourceType = "group_members"
 )
 
 func (r ResourceType) FriendlyString() string {
@@ -47,6 +48,8 @@ func (r ResourceType) FriendlyString() string {
 		return "api key"
 	case ResourceTypeGroup:
 		return "group"
+	case ResourceTypeGroupMembers:
+		return "group members"
 	default:
 		return "unknown"
 	}

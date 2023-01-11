@@ -306,6 +306,7 @@ const (
 	ResourceTypeApiKey          ResourceType = "api_key"
 	ResourceTypeGroup           ResourceType = "group"
 	ResourceTypeWorkspaceBuild  ResourceType = "workspace_build"
+	ResourceTypeGroupMembers    ResourceType = "group_members"
 )
 
 func (e *ResourceType) Scan(src interface{}) error {
