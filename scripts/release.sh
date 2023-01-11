@@ -7,7 +7,7 @@ cdroot
 
 usage() {
 	cat <<EOH
-Usage: ./release.sh [--branch <name>] [--draft] [--dry-run] [--ref <ref>] [--major | --minor | --patch]
+Usage: ./release.sh [-h | --help] [--draft] [--dry-run] [--major | --minor | --patch]
 
 This script should be called to create a new release.
 
@@ -17,23 +17,38 @@ based on if the release contains breaking changes or not. If the release
 contains breaking changes, a new minor version will be created. Otherwise, a
 new patch version will be created.
 
-Set --ref if you need to specify a specific commit that the new version will
-be tagged at, otherwise the latest commit will be used.
-
-Set --minor to force a minor version bump, even when there are no breaking
-changes. Likewise for --major. By default a patch version will be created.
-
-Set --dry-run to run the release workflow in CI as a dry-run (no release will
-be created).
-
 To mark a release as containing breaking changes, the commit title should
 either contain a known prefix with an exclamation mark ("feat!:",
 "feat(api)!:") or the PR that was merged can be tagged with the
 "release/breaking" label.
 
-To test changes to this script, you can set --branch <my-branch>, which will
-run the release workflow in CI as a dry-run and use the latest commit on the
-specified branch as the release commit. This will also set --dry-run.
+GitHub labels that affect release notes:
+
+- release/breaking: Shown under BREAKING CHANGES, prevents patch release.
+- security: Shown under SECURITY.
+
+Flags:
+
+Set --major or --minor to force a larger version bump, even when there are no
+breaking changes. By default a patch version will be created, --patch is no-op.
+
+Set --draft to create a draft release, this is to allow you to modify release
+notes in the GitHub UI before publishing.
+
+Set --dry-run to run the release workflow in CI as a dry-run (no release will
+be created).
+
+Development:
+
+Usage: ./release.sh [-h | --help] [--branch <branch>] [--draft] [--dry-run] [--major | --minor | --patch] [--ref <ref>]
+
+Flags:
+
+Set --ref if you need to specify a specific commit that the new version will
+be tagged at, otherwise the latest commit will be used.
+
+Set --branch if you are testing changes to the release process on a custom
+branch. This flag implies --dry-run and no actual release will be created.
 EOH
 }
 
