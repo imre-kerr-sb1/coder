@@ -4,6 +4,7 @@ import (
 	"archive/tar"
 	"bytes"
 	"io"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"strings"
@@ -56,18 +57,34 @@ func Tar(directory string, limit int64) ([]byte, error) {
 		)
 	}
 
-	err = filepath.Walk(directory, func(file string, fileInfo os.FileInfo, err error) error {
+	var walkFn filepath.WalkFunc
+	walkFn = func(file string, fileInfo os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
-		var link string
 		if fileInfo.Mode()&os.ModeSymlink == os.ModeSymlink {
-			link, err = os.Readlink(file)
+			// Per https://github.com/coder/coder/issues/5677, we want to
+			// resolve symlinks.
+			var linkDest string
+			// Resolve symlinks.
+			linkDest, err = os.Readlink(file)
 			if err != nil {
 				return err
 			}
+
+			destInfo, err := os.Stat(linkDest)
+			if err != nil {
+				return err
+			}
+			if destInfo.IsDir() {
+				return filepath.Walk(linkDest, func(path string, info fs.FileInfo, err error) error {
+					walkFn(path, info, err)
+				})
+			}
+			return nil
 		}
-		header, err := tar.FileInfoHeader(fileInfo, link)
+
+		header, err := tar.FileInfoHeader(fileInfo, "")
 		if err != nil {
 			return err
 		}
@@ -76,11 +93,10 @@ func Tar(directory string, limit int64) ([]byte, error) {
 			return err
 		}
 		if strings.HasPrefix(rel, ".") || strings.HasPrefix(filepath.Base(rel), ".") {
+			// Don't archive hidden files!
 			if fileInfo.IsDir() && rel != "." {
-				// Don't archive hidden files!
 				return filepath.SkipDir
 			}
-			// Don't archive hidden files!
 			return nil
 		}
 		if strings.Contains(rel, ".tfstate") {
@@ -109,7 +125,9 @@ func Tar(directory string, limit int64) ([]byte, error) {
 			return xerrors.Errorf("Archive too big. Must be <= %d bytes", limit)
 		}
 		return data.Close()
-	})
+	}
+
+	err = filepath.Walk(directory, walkFn)
 	if err != nil {
 		return nil, err
 	}
