@@ -14106,10 +14106,10 @@ typescript@4.8.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.2.tgz#e3b33d5ccfb5914e4eeab6699cf208adee3fd790"
   integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==
 
-tzdata@1.0.30:
-  version "1.0.30"
-  resolved "https://registry.yarnpkg.com/tzdata/-/tzdata-1.0.30.tgz#d9d5a4b4b5e1ed95f6255f98c0564c4256316f52"
-  integrity sha512-/0yogZsIRUVhGIEGZahL+Nnl9gpMD6jtQ9MlVtPVofFwhaqa+cFTgRy1desTAKqdmIJjS6CL+i6F/mnetrLaxw==
+tzdata@1.0.38:
+  version "1.0.38"
+  resolved "https://registry.yarnpkg.com/tzdata/-/tzdata-1.0.38.tgz#59a066b175d98659a11b508bbbbf5e2579d2ed98"
+  integrity sha512-KIgVvZTLt+DWzr3MOENNLCLdsNB+usedRYYHCVfVbA7TDewj8mfjlWmj3Mv6FfdrvfeE6Oprt+qE47YiL90duQ==
 
 ua-parser-js@1.0.33:
   version "1.0.33"
