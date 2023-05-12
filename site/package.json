@@ -51,7 +51,7 @@
     "cron-parser": "4.7.0",
     "cronstrue": "2.21.0",
     "date-fns": "2.29.3",
-    "dayjs": "1.11.4",
+    "dayjs": "1.11.7",
     "emoji-mart": "5.4.0",
     "eventsourcemock": "2.0.0",
     "formik": "2.2.9",
