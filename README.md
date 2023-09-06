@@ -1,3 +1,4 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.dataplattform.sparebank1.no/from-referrer/)
 <div align="center">
   <a href="https://coder.com#gh-light-mode-only">
     <img src="./docs/images/logo-black.png" style="width: 128px">
